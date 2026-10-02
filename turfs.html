@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nearby Turfs - Khela Kya</title>
+  <link rel="stylesheet" href="khela_kya.css" />
+  <link rel="stylesheet" href="turfs.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="khela_kya.html">
+        <img src="img/logo.jpg" alt="Khela Kya logo" class="logo-img" />
+        <span class="logo-text">Khela Kya</span>
+      </a>
+      <nav id="turfsNav" class="main-nav" role="navigation" aria-label="Main navigation">
+        <a href="khela_kya.html">Home</a>
+        <a href="khela_kya.html#sports">Sports</a>
+        <a href="khela_kya.html#news">News</a>
+        <a class="open-auth" data-mode="login" href="#">Sign in</a>
+        <a class="open-auth" data-mode="signup" href="#">Sign up</a>
+        <a class="cta" href="khela_kya.html#matches">Live</a>
+      </nav>
+      <button class="hamburger" aria-label="Open menu" aria-controls="turfsNav" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="turfs-page">
+    <section class="turfs-hero">
+      <div class="container turfs-hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Nearby sports booking</p>
+          <h1>Discover, compare, and book premium turfs near you.</h1>
+          <p>Live slots, map discovery, verified reviews, offers, and one-minute booking without leaving the page.</p>
+        </div>
+
+        <div class="hero-search-panel" aria-label="Search nearby turfs">
+          <div class="search-grid">
+            <label class="search-field">
+              <span>Search turf, sport, area, city, or pincode</span>
+              <input id="search" type="search" list="searchSuggestions" placeholder="Try Football in Delhi or Greenfield" autocomplete="off" />
+              <datalist id="searchSuggestions"></datalist>
+            </label>
+            <button id="findBtn" class="premium-btn" type="button">Use My Location</button>
+            <button id="filterToggle" class="filter-toggle" type="button" aria-controls="filtersPanel" aria-expanded="false">Filters</button>
+          </div>
+
+          <div id="manualLocationPanel" class="manual-location" hidden>
+            <label>
+              <span>Manual location</span>
+              <input id="manualLocation" list="locationSuggestions" placeholder="Search city, area, or pincode" autocomplete="off" />
+              <datalist id="locationSuggestions"></datalist>
+            </label>
+            <button id="manualLocationBtn" class="ghost-btn" type="button">Set Location</button>
+          </div>
+
+          <div class="status-row">
+            <p id="status" class="status-text" aria-live="polite">Finding turfs around your current location...</p>
+            <p id="weatherCard" class="weather-card">Weather loading...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container progress-strip" aria-label="Booking progress">
+      <span>Choose Turf</span>
+      <span>Choose Slot</span>
+      <span>Payment</span>
+      <span>Confirmation</span>
+    </section>
+
+    <section class="container discovery-layout">
+      <aside id="filtersPanel" class="filters-panel" aria-label="Advanced turf filters">
+        <div class="filter-header">
+          <div>
+            <p class="eyebrow">Advanced filters</p>
+            <h2>Refine results</h2>
+          </div>
+          <button id="resetFilters" class="text-btn" type="button">Reset</button>
+        </div>
+
+        <fieldset>
+          <legend>Sports</legend>
+          <div class="chip-grid" data-filter-group="sports">
+            <label><input type="checkbox" value="Football"> Football</label>
+            <label><input type="checkbox" value="Cricket"> Cricket</label>
+            <label><input type="checkbox" value="Badminton"> Badminton</label>
+            <label><input type="checkbox" value="Basketball"> Basketball</label>
+            <label><input type="checkbox" value="Tennis"> Tennis</label>
+            <label><input type="checkbox" value="Pickleball"> Pickleball</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Price</legend>
+          <label><input name="priceFilter" type="radio" value="all" checked> Any price</label>
+          <label><input name="priceFilter" type="radio" value="100-300"> ₹100-300</label>
+          <label><input name="priceFilter" type="radio" value="300-500"> ₹300-500</label>
+          <label><input name="priceFilter" type="radio" value="500+"> ₹500+</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Distance</legend>
+          <label><input name="distanceFilter" type="radio" value="all" checked> Any distance</label>
+          <label><input name="distanceFilter" type="radio" value="2"> &lt; 2 km</label>
+          <label><input name="distanceFilter" type="radio" value="5"> &lt; 5 km</label>
+          <label><input name="distanceFilter" type="radio" value="10"> &lt; 10 km</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Rating and availability</legend>
+          <label><input id="ratingFilter" type="checkbox"> 4+ rating</label>
+          <label><input id="availableNowFilter" type="checkbox"> Available now</label>
+          <label><input id="availableTodayFilter" type="checkbox"> Available today</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Amenities</legend>
+          <div class="chip-grid amenities-filter" data-filter-group="amenities">
+            <label><input type="checkbox" value="Parking"> Parking</label>
+            <label><input type="checkbox" value="Changing Room"> Changing Room</label>
+            <label><input type="checkbox" value="Washroom"> Washroom</label>
+            <label><input type="checkbox" value="Flood Lights"> Flood Lights</label>
+            <label><input type="checkbox" value="Drinking Water"> Drinking Water</label>
+            <label><input type="checkbox" value="Cafe"> Cafe</label>
+            <label><input type="checkbox" value="Locker"> Locker</label>
+            <label><input type="checkbox" value="Indoor"> Indoor</label>
+            <label><input type="checkbox" value="Outdoor"> Outdoor</label>
+            <label><input type="checkbox" value="Artificial Turf"> Artificial Turf</label>
+            <label><input type="checkbox" value="Natural Grass"> Natural Grass</label>
+          </div>
+        </fieldset>
+      </aside>
+
+      <section class="results-shell" aria-label="Nearby turf results">
+        <div class="results-toolbar">
+          <div>
+            <p class="eyebrow">Discovery</p>
+            <h2 id="resultTitle">Nearby turfs</h2>
+            <p id="resultMeta" class="muted-small">Loading premium turf options...</p>
+          </div>
+
+          <div class="toolbar-actions">
+            <div class="view-tabs" role="tablist" aria-label="Choose results view">
+              <button class="tab active" type="button" role="tab" aria-selected="true" data-view="list">List View</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-view="map">Map View</button>
+            </div>
+            <select id="sortSelect" aria-label="Sort turfs">
+              <option value="distance">Nearest first</option>
+              <option value="rating">Highest rated</option>
+              <option value="price">Lowest price</option>
+            </select>
+            <button id="favoritesOnly" class="ghost-btn" type="button" aria-pressed="false">Favorite Turfs</button>
+          </div>
+        </div>
+
+        <div id="loadingSkeleton" class="skeleton-grid" aria-hidden="true">
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+        </div>
+
+        <div id="listPanel" class="view-panel">
+          <div id="list" class="turf-list" aria-live="polite"></div>
+          <div id="emptyState" class="empty-state" hidden>
+            <div class="empty-illustration" aria-hidden="true"></div>
+            <h3>No nearby turfs found.</h3>
+            <p>Try a different sport, remove filters, or expand the search radius.</p>
+            <div class="empty-actions">
+              <button id="emptySearchAgain" class="premium-btn" type="button">Search Again</button>
+              <button id="expandRadius" class="ghost-btn" type="button">Expand Search Radius</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="mapPanel" class="view-panel map-panel" hidden>
+          <div id="map" class="map-container" aria-label="Map of nearby turfs"></div>
+          <div class="map-note">Directions, live route, and arrival time open in Google Maps.</div>
+        </div>
+
+        <section class="recommendations" aria-label="Recommended turfs">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Recommended for you</p>
+              <h2>Popular picks nearby</h2>
+            </div>
+            <p class="muted-small">Based on distance, favorite sports, and crowd ratings.</p>
+          </div>
+          <div id="recommendations" class="recommendation-row"></div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <div id="bookingModal" class="booking-modal-overlay" hidden>
+    <section class="booking-sheet" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
+      <button class="modal-icon-close" type="button" data-close-modal aria-label="Close booking dialog">✕</button>
+      <div class="booking-header">
+        <p class="eyebrow">Quick booking</p>
+        <h2 id="bookingTitle">Book your slot</h2>
+        <p id="bookingSubtitle" class="muted-small"></p>
+      </div>
+
+      <ol class="booking-steps" aria-label="Booking flow progress">
+        <li class="active" data-step-indicator="0">Choose Slot</li>
+        <li data-step-indicator="1">Payment</li>
+        <li data-step-indicator="2">Confirmation</li>
+      </ol>
+
+      <div class="booking-step active" data-booking-step="0">
+        <label>Date
+          <input id="bookingDate" type="date" />
+        </label>
+        <div>
+          <p class="field-label">Available slots</p>
+          <div id="bookingSlots" class="slot-picker"></div>
+        </div>
+        <div class="two-col">
+          <label>Duration
+            <select id="bookingDuration">
+              <option value="1">1 Hour</option>
+              <option value="2">2 Hours</option>
+              <option value="3">3 Hours</option>
+            </select>
+          </label>
+          <label>Players
+            <input id="bookingPlayers" type="number" min="2" max="30" value="10" />
+          </label>
+        </div>
+        <label>Apply coupon
+          <input id="couponInput" type="text" placeholder="Try PLAY20 or FLAT100" />
+        </label>
+      </div>
+
+      <div class="booking-step" data-booking-step="1">
+        <div id="paymentSummary" class="payment-summary"></div>
+        <fieldset class="payment-methods">
+          <legend>Payment method</legend>
+          <label><input name="paymentMethod" type="radio" value="upi" checked> UPI</label>
+          <label><input name="paymentMethod" type="radio" value="card"> Card</label>
+          <label><input name="paymentMethod" type="radio" value="pay-at-venue"> Pay at venue</label>
+        </fieldset>
+      </div>
+
+      <div class="booking-step confirmation-step" data-booking-step="2">
+        <div class="confirmation-mark" aria-hidden="true">✓</div>
+        <h3>Booking confirmed</h3>
+        <p id="confirmationText"></p>
+      </div>
+
+      <div class="booking-actions">
+        <button id="bookingBack" class="ghost-btn" type="button">Back</button>
+        <button id="bookingNext" class="premium-btn" type="button">Continue</button>
+      </div>
+    </section>
+  </div>
+
+  <div id="detailModal" class="booking-modal-overlay" hidden>
+    <section class="detail-sheet" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+      <button class="modal-icon-close" type="button" data-close-details aria-label="Close details dialog">✕</button>
+      <div id="detailContent"></div>
+    </section>
+  </div>
+
+  <div id="shareModal" class="booking-modal-overlay" hidden>
+    <section class="share-sheet" role="dialog" aria-modal="true" aria-labelledby="shareTitle">
+      <button class="modal-icon-close" type="button" data-close-share aria-label="Close share dialog">✕</button>
+      <p class="eyebrow">Share turf</p>
+      <h2 id="shareTitle">Send this turf to your team</h2>
+      <p id="shareSubtitle" class="muted-small"></p>
+      <div class="share-actions">
+        <a id="shareWhatsApp" class="share-btn" target="_blank" rel="noopener">WhatsApp</a>
+        <a id="shareFacebook" class="share-btn" target="_blank" rel="noopener">Facebook</a>
+        <a id="shareInstagram" class="share-btn" target="_blank" rel="noopener">Instagram</a>
+        <button id="copyShareLink" class="share-btn" type="button">Copy Link</button>
+      </div>
+      <p id="shareFeedback" class="muted-small" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <div id="mobileBookingBar" class="mobile-booking-bar" hidden>
+    <div>
+      <strong id="mobileTurfName">Nearest turf</strong>
+      <span id="mobileTurfPrice">Book Now</span>
+    </div>
+    <button id="mobileBookBtn" class="premium-btn" type="button">Book Now</button>
+  </div>
+
+  <div id="authModal" class="modal-overlay" hidden>
+    <div class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <button class="modal-close" aria-label="Close auth dialog">✕</button>
+      <h3 id="authTitle">Sign in</h3>
+      <div id="authFeedback" class="muted" style="margin-bottom:.5rem"></div>
+      <form id="authForm" class="contact-form">
+        <div id="authFields"></div>
+        <div class="form-actions">
+          <button type="submit" class="btn">Submit</button>
+          <button type="button" class="btn btn-ghost modal-close">Cancel</button>
+        </div>
+      </form>
+      <p class="muted-small" style="margin-top:.5rem">Don't have an account? <a href="#" id="switchToSignUp">Sign up</a></p>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="turfs.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

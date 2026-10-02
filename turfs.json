@@ -1,0 +1,7 @@
+[
+  {"id":1,"name":"Greenfield Turf","lat":28.7041,"lng":77.1025,"addr":"Near Stadium Road","phone":"+91 98765 43210"},
+  {"id":2,"name":"City Sports Turf","lat":28.7090,"lng":77.1150,"addr":"Market Lane","phone":"+91 91234 56789"},
+  {"id":3,"name":"Riverside Turf","lat":28.6950,"lng":77.0900,"addr":"Riverside Park","phone":"+91 99887 66554"},
+  {"id":4,"name":"Sunrise Turf","lat":28.7200,"lng":77.1000,"addr":"Sunrise Avenue","phone":"+91 90123 45678"},
+  {"id":5,"name":"Valley Turf","lat":28.7105,"lng":77.1300,"addr":"Valley Street","phone":"+91 90909 09090"}
+]

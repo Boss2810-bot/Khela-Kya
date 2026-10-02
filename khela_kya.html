@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Khela Kya — Sports Hub</title>
+    <link rel="stylesheet" href="khela_kya.css" />
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="#">
+                <picture>
+                    <source srcset="img/logo.jpg" type="image/png">
+                    <img src="img/logo.jpg" alt="Khela Kya logo" class="logo-img" />
+                </picture>
+                <span class="logo-text">Khela Kya</span>
+            </a>
+            <nav id="mainNav" class="main-nav" role="navigation" aria-label="Main navigation">
+                <a href="#sports">Sports</a>
+                <a href="#news">News</a>
+                <a href="#matches">Matches</a>
+                <a href="turfs.html">Turf</a>
+                <a href="#" class="open-contact">Contact</a>
+                <a class="open-auth" data-mode="login" href="#">Sign in</a>
+                <a class="open-auth" data-mode="signup" href="#">Sign up</a>
+                <a class="cta" href="#matches">Live</a>
+            </nav>
+            <button class="hamburger" aria-label="Open menu" aria-controls="mainNav" aria-expanded="false">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-inner container">
+                <h1>All Things Sports — Play, Watch, Enjoy</h1>
+                <p>Latest news, upcoming matches, and deep dives into your favourite games.</p>
+                <p><a class="btn" href="#matches">See upcoming matches</a></p>
+            </div>
+        </section>
+
+        <section id="sports" class="container categories">
+            <h2>Popular Sports</h2>
+            <div class="grid cols-4">
+                <article class="card">
+                    <img src="img/1711879275-image_cropper_1711879253005.webp" alt="Cricket" class="cricket-img" />
+                    <h3>Cricket</h3>
+                    <p>Scores, series, and player stats from around the world.</p>
+                    <div class="sport-details" hidden>
+                        <ul>
+                            <li><strong>Fast fact:</strong> The longest recorded Test match lasted 10 days (including
+                                rest days).</li>
+                            <li><strong>Popular formats:</strong> Test, ODI, T20 — T20 is fastest-growing.</li>
+                            <li><strong>Upcoming:</strong> Local T20 league — Dec 20, 2025.</li>
+                        </ul>
+                        <p><a class="btn" href="#matches">See cricket matches</a></p>
+                    </div>
+                    <p><a class="btn btn-ghost" href="cricket.html">Learn more</a></p>
+                </article>
+                <article class="card">
+                    <img src="(2) Instagram_files/378550182_324054163531194_414513473059086200_n.jpg" alt="Football" />
+                    <h3>Football</h3>
+                    <p>Fixtures, highlights, and league tables.</p>
+                    <div class="sport-details" hidden>
+                        <ul>
+                            <li><strong>Fast fact:</strong> The fastest red card was given after 2 seconds in a
+                                professional match.</li>
+                            <li><strong>Popular leagues:</strong> EPL, La Liga, Serie A — watch regional derbies for
+                                excitement.</li>
+                            <li><strong>Try it:</strong> Five-a-side sessions available weekly at nearby turfs.</li>
+                        </ul>
+                        <p><a class="btn" href="turfs.html">Find turfs for football</a></p>
+                    </div>
+                    <p><a class="btn btn-ghost" href="football.html">Learn more</a></p>
+                </article>
+                <article class="card">
+                    <img src="img/Tennis-Court-Construction_Artificial-Turf.jpg" alt="Tennis" />
+                    <h3>Tennis</h3>
+                    <p>Tournament coverage and player profiles.</p>
+                    <div class="sport-details" hidden>
+                        <ul>
+                            <li><strong>Fast fact:</strong> The fastest recorded serve is over 260 km/h.</li>
+                            <li><strong>Play tips:</strong> Focus on footwork and placement over power.</li>
+                            <li><strong>Local classes:</strong> Beginner group classes run on weekends.</li>
+                        </ul>
+                        <p><a class="btn" href="#sports">Join tennis classes</a></p>
+                    </div>
+                    <p><a class="btn btn-ghost" href="tennis.html">Learn more</a></p>
+                </article>
+                <article class="card">
+                    <img src="img/Amaravida-tennis-basket-ball-squash-1-1200.jpg" alt="Basketball" />
+                    <h3>Basketball</h3>
+                    <p>Fast-paced action, top plays, and analysis.</p>
+                    <div class="sport-details" hidden>
+                        <ul>
+                            <li><strong>Fast fact:</strong> A regulation basketball hoop is 10 feet high.</li>
+                            <li><strong>Pickup games:</strong> Commonly 3-on-3 or 5-on-5 at community courts.</li>
+                            <li><strong>Training:</strong> Dribbling and agility drills improve game performance
+                                quickly.</li>
+                        </ul>
+                        <p><a class="btn" href="#">Find local pickup games</a></p>
+                    </div>
+                    <p><a class="btn btn-ghost" href="basketball.html">Learn more</a></p>
+                </article>
+            </div>
+        </section>
+        <section id="news" class="container news">
+            <h2>Latest News</h2>
+            <div class="news-list">
+                <article class="news-item">
+                    <h3>National team announces squad for the tournament</h3>
+                    <p class="muted">Nov 20, 2025 — By Sports Desk</p>
+                    <p>Coach selects a blend of youth and experience for the upcoming tournament.</p>
+                </article>
+                <article class="news-item">
+                    <h3>Injury update: Star player recovering well</h3>
+                    <p class="muted">Nov 19, 2025 — By Health Reporter</p>
+                    <p>Rehab continues on schedule; return expected next month.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="matches" class="container matches">
+            <h2>Upcoming Matches</h2>
+            <div class="match-controls">
+                <label><input type="checkbox" id="showPast"> Show past matches</label>
+                <label style="margin-left:1rem">Sport:
+                    <select id="sportFilter">
+                        <option value="all">All</option>
+                        <option value="cricket">Cricket</option>
+                        <option value="football">Football</option>
+                        <option value="tennis">Tennis</option>
+                        <option value="basketball">Basketball</option>
+                    </select>
+                </label>
+            </div>
+            <ul class="match-list">
+                <li data-sport="cricket" data-datetime="2026-08-15T19:00:00"><strong>Team A</strong> vs <strong>Team
+                        B</strong> — Aug 15, 2026 — 7:00 PM</li>
+                <li data-sport="football" data-datetime="2026-08-18T16:00:00"><strong>City FC</strong> vs
+                    <strong>United</strong> — Aug 18, 2026 — 4:00 PM</li>
+                <li data-sport="football" data-datetime="2026-08-25T20:30:00"><strong>Champions</strong> vs
+                    <strong>Rivals</strong> — Aug 25, 2026 — 8:30 PM</li>
+                <li data-sport="cricket" data-datetime="2026-09-06T15:00:00"><strong>National XI</strong> vs
+                    <strong>State XI</strong> — Sep 06, 2026 — 3:00 PM</li>
+                <li data-sport="cricket" data-datetime="2026-09-12T10:00:00"><strong>City CC</strong> vs <strong>County
+                        CC</strong> — Sep 12, 2026 — 10:00 AM</li>
+                <li data-sport="cricket" data-datetime="2026-10-05T14:30:00"><strong>All Stars</strong> vs <strong>Young
+                        Guns</strong> — Oct 05, 2026 — 2:30 PM</li>
+                <li data-sport="basketball" data-datetime="2026-10-20T19:00:00"><strong>Future Stars</strong> vs
+                    <strong>Challengers</strong> — Oct 20, 2026 — 7:00 PM</li>
+            </ul>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>&copy; 2025 Khela Kya — All rights reserved.</p>
+            <nav class="footer-nav">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#" class="open-contact">Contact</a>
+            </nav>
+        </div>
+    </footer>
+    <div id="contactModal" class="modal-overlay" hidden>
+        <div class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+            <button class="modal-close" aria-label="Close contact dialog">✕</button>
+            <h3 id="contactTitle">Contact Khela Kya</h3>
+            <p class="muted">Have a question or want to list a turf ? Drop us a message.</p>
+            <form id="contactForm" class="contact-form">
+                <label>Name<input type="text" name="name" required placeholder="Your name"></label>
+                <label>Email<input type="email" name="email" required placeholder="you@example.com"></label>
+                <label>Subject<input type="text" name="subject" placeholder="Short subject"></label>
+                <label>Message<textarea name="message" rows="4" required
+                        placeholder="How can we help?"></textarea></label>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Send Message</button>
+                    <button type="button" class="btn btn-ghost modal-close">Cancel</button>
+                </div>
+                <p id="contactFeedback" class="muted" aria-live="polite"></p>
+            </form>
+        </div>
+    </div>
+    <script>
+        (function () {
+            const btn = document.querySelector('.hamburger');
+            const nav = document.querySelector('.main-nav');
+            btn && btn.addEventListener('click', () => {
+                const isOpen = nav.classList.toggle('open');
+                btn.setAttribute('aria-expanded', String(isOpen));
+            });
+        })();
+        (function () {
+            const matchList = document.querySelector('.match-list');
+            const showPast = document.getElementById('showPast');
+            const sportFilter = document.getElementById('sportFilter');
+            function parseEventDate(li) {
+                if (li.dataset && li.dataset.datetime) {
+                    const d2 = new Date(li.dataset.datetime);
+                    if (!isNaN(d2)) return d2;
+                }
+                const text = li.textContent || '';
+                const parts = text.split('—').map(s => s.trim()).filter(Boolean);
+                if (parts.length >= 2) {
+                    const dateStr = parts.slice(-2).join(' ');
+                    const d = new Date(dateStr);
+                    if (!isNaN(d)) return d;
+                }
+                return null;
+            }
+
+            function matchesSport(li, selected) {
+                if (!selected || selected === 'all') return true;
+                const s = (li.dataset && li.dataset.sport) ? li.dataset.sport.toLowerCase() : '';
+                return s === selected;
+            }
+
+            function updateMatches() {
+                if (!matchList) return;
+                const lis = Array.from(matchList.querySelectorAll('li'));
+                const now = new Date();
+                let anyUpcoming = false;
+                const selectedSport = sportFilter ? sportFilter.value : 'all';
+                lis.forEach(li => {
+                    if (li.classList.contains('no-upcoming')) return;
+                    const ev = parseEventDate(li);
+                    const showAll = showPast && showPast.checked;
+                    const sportOk = matchesSport(li, selectedSport);
+                    if (!sportOk) {
+                        li.style.display = 'none';
+                        return;
+                    }
+                    if (showAll) {
+                        li.style.display = '';
+                        if (ev && ev >= now) anyUpcoming = true;
+                    } else {
+                        if (ev && ev >= now) {
+                            li.style.display = '';
+                            anyUpcoming = true;
+                        } else {
+                            li.style.display = 'none';
+                        }
+                    }
+                });
+
+                let placeholder = matchList.querySelector('.no-upcoming');
+                if (!anyUpcoming) {
+                    if (!placeholder) {
+                        placeholder = document.createElement('li');
+                        placeholder.className = 'no-upcoming';
+                        placeholder.textContent = 'No upcoming matches.';
+                        matchList.appendChild(placeholder);
+                    }
+                } else if (placeholder) {
+                    placeholder.remove();
+                }
+            }
+
+            if (showPast) showPast.addEventListener('change', updateMatches);
+            if (sportFilter) sportFilter.addEventListener('change', updateMatches);
+            updateMatches();
+            setInterval(updateMatches, 60 * 1000);
+        })();
+        (function () {
+            const opens = Array.from(document.querySelectorAll('.open-contact'));
+            const modal = document.getElementById('contactModal');
+            const closeBtns = Array.from(document.querySelectorAll('.modal-close'));
+            const form = document.getElementById('contactForm');
+            const feedback = document.getElementById('contactFeedback');
+
+            if (!modal) return;
+
+            function openModal() { modal.hidden = false; document.body.style.overflow = 'hidden'; const first = modal.querySelector('input,textarea,button'); if (first) first.focus(); }
+            function closeModal() { modal.hidden = true; document.body.style.overflow = ''; if (feedback) feedback.textContent = ''; if (form) form.reset(); }
+
+            opens.forEach(a => a.addEventListener('click', e => { e.preventDefault(); openModal(); }));
+            closeBtns.forEach(b => b.addEventListener('click', closeModal));
+            modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+            if (!form) return;
+            const contactBase = (location.protocol === 'file:') ? 'http://localhost:5000' : '';
+            form.addEventListener('submit', async e => {
+                e.preventDefault();
+                const data = new FormData(form);
+                const name = (data.get('name') || '').trim();
+                const email = (data.get('email') || '').trim();
+                const subject = (data.get('subject') || '').trim() || 'Contact from Khela Kya';
+                const message = (data.get('message') || '').trim() || '';
+                if (!name || !email || !message) { if (feedback) feedback.textContent = 'Please provide name, email, and message.'; return; }
+                feedback.textContent = 'Sending…';
+                try {
+                    const url = contactBase + '/api/contact';
+                    const res = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ name, email, subject, message }) });
+                    const text = await res.text();
+                    const json = text ? JSON.parse(text) : {};
+                    if (!res.ok) { throw new Error(json.message || ('Status ' + res.status)); }
+                    if (feedback) feedback.textContent = 'Message saved — thank you!';
+                } catch (err) {
+                    console.warn('Contact save failed, falling back to mailto', err);
+                    const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+                    const mailto = 'mailto:khelakya@example.com?subject=' + encodeURIComponent(subject) + '&body=' + body;
+                    try { window.location.href = mailto; if (feedback) feedback.textContent = 'Mail client opened (fallback). Thank you!'; } catch (err2) { if (feedback) feedback.textContent = 'Unable to send message.'; }
+                }
+                setTimeout(() => { closeModal(); }, 1200);
+            });
+        })();
+
+        (function () {
+            const newsList = document.querySelector('.news-list');
+            if (!newsList) return;
+            const items = Array.from(newsList.querySelectorAll('.news-item'));
+            function parseDate(item) {
+                const muted = item.querySelector('.muted');
+                if (!muted) return null;
+                const txt = muted.textContent || '';
+                const m = txt.match(/([A-Za-z]{3,9} \d{1,2}, \d{4})/);
+                if (m) return new Date(m[1]);
+                return null;
+            }
+            const now = new Date();
+            const recentLimitDays = 30;
+            const recent = [];
+            const older = [];
+            items.forEach(it => {
+                const d = parseDate(it) || new Date();
+                const diffDays = (now - d) / (1000 * 60 * 60 * 24);
+                if (diffDays <= recentLimitDays) recent.push({ el: it, date: d }); else older.push({ el: it, date: d });
+            });
+            recent.sort((a, b) => b.date - a.date);
+            older.sort((a, b) => b.date - a.date);
+            newsList.innerHTML = '';
+            recent.forEach(r => newsList.appendChild(r.el));
+            if (older.length) {
+                const btn = document.createElement('button');
+                btn.className = 'btn-ghost'; btn.textContent = `Show older news (${older.length})`;
+                btn.style.marginTop = '.6rem';
+                btn.addEventListener('click', () => {
+                    older.forEach(o => newsList.appendChild(o.el));
+                    btn.remove();
+                });
+                newsList.parentNode.insertBefore(btn, newsList.nextSibling);
+            }
+        })();
+    </script>
+
+    <div id="authModal" class="modal-overlay" hidden>
+        <div class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+            <button class="modal-close" aria-label="Close auth dialog">✕</button>
+            <h3 id="authTitle">Sign in</h3>
+            <div id="authFeedback" class="muted" style="margin-bottom:.5rem"></div>
+            <form id="authForm" class="contact-form">
+                <div id="authFields"></div>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Submit</button>
+                    <button type="button" class="btn btn-ghost modal-close">Cancel</button>
+                </div>
+            </form>
+            <p class="muted-small" style="margin-top:.5rem">Don't have an account? <a href="#" id="switchToSignUp">Sign
+                    up</a></p>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+
+</html>
